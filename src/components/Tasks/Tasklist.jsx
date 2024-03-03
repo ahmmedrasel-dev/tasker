@@ -3,7 +3,8 @@ import NoTaskFound from "./NoTaskFound";
 import { useContext } from "react";
 import { TaskContext } from "../../context";
 const Tasklist = () => {
-  const { tasks } = useContext(TaskContext);
+  const { state } = useContext(TaskContext);
+
   return (
     <table className="table-fixed overflow-auto xl:w-full">
       <thead>
@@ -32,7 +33,11 @@ const Tasklist = () => {
         </tr>
       </thead>
       <tbody>
-        {tasks.length > 0 ? <SingleTask tasks={tasks} /> : <NoTaskFound />}
+        {state.taskData.length > 0 ? (
+          <SingleTask tasks={state.taskData} />
+        ) : (
+          <NoTaskFound />
+        )}
       </tbody>
     </table>
   );
