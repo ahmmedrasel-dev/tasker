@@ -1,15 +1,15 @@
-import Footer from "./components/Footer";
-import Header from "./components/Header";
+import { useState } from "react";
+import { TaskContext } from "./context";
 import Home from "./pages/Home";
-
+import { getTaskList } from "./data/tasks.js";
 function App() {
+  const tasklist = getTaskList();
+  const [tasks, setTasks] = useState(tasklist);
   return (
     <>
-      <body className="bg-[#191D26] font-[Inter] text-white">
-        <Header />
+      <TaskContext.Provider value={{ tasks, setTasks }}>
         <Home />
-        <Footer />
-      </body>
+      </TaskContext.Provider>
     </>
   );
 }
